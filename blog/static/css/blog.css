@@ -80,6 +80,6 @@ tr.boarder {
     background-color: yellow;
 }
 
-.translucent {
-    opacity: 0.5;
+.comment {
+    margin: 20px 0px 20px 20px;
 }

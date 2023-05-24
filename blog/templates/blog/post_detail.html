@@ -16,4 +16,37 @@
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
     </div>
+    <hr>
+    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">댓글 달기</a>
+    
+    {% for comment in comments %}
+        <div class="comment">
+            <div class="date">
+                {% if comment.post.approved_comments and user.is_authenticated %}
+                    {{ comment.created_date }}
+                    <a class="btn btn-default" href="{% url 'comment_remove' comment.pk %}">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                {% elif comment.post.approved_comments %}
+                    <p>This comment is pending approval.</p>
+                    <a class="btn btn-default" href="{% url 'comment_approve' comment.pk %}">
+                        <span class="glyphicon glyphicon-ok"></span>
+                    </a>
+                {% endif %}
+            </div>
+            {% if not comment.post.approved_comments %}
+                <p>This comment is pending approval.</p>
+                <a class="btn btn-default" href="{% url 'comment_approve' comment.pk %}">
+                    <span class="glyphicon glyphicon-ok"></span>
+                </a>
+            {% else %}
+                <strong>{{ comment.author }}</strong>
+                <p>{{ comment.text|linebreaks }}</p>
+            {% endif %}
+        </div>
+    {% empty %}
+        <div class="comment">
+            <p>아직 등록된 댓글이 없습니다. 댓글을 등록해주세요</p>
+        </div>
+    {% endfor %}
 {% endblock %}

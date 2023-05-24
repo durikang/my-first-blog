@@ -10,6 +10,7 @@
            · 게시일 : {{ post.published_date }}
         </div>
         {% comment %} <p>{{ post.text|linebreaksbr }}</p> {% endcomment %}
+        <a href="{% url 'post_detail' pk=post.pk %}">Comments: {{ post.approved_comments.count }}</a>
     </div>
     {% endfor %}
 {% endblock %}
