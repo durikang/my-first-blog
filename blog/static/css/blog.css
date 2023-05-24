@@ -11,6 +11,7 @@
     padding: 20px 20px 20px 40px;
 }
 
+
 .page-header h1,
 .page-header h1 a,
 .page-header h1 a:visited,
@@ -57,7 +58,14 @@ h4 {
     border-bottom: 1px solid #e8e8e8;
 }
 
-.post h1 a,
-.post h1 a:visited {
-    color: #000000;
+.btn-no-underline {
+    text-decoration: none !important;
+}
+
+.btn-link {
+    color: black !important;
+}
+
+.btn-link:hover {
+    opacity: 0.5 !important;
 }
