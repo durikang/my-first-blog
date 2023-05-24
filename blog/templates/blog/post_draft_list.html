@@ -1,0 +1,37 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <h1>임시 저장 글</h1>
+    {% for post in posts %}
+    <div class="post">
+        <table class="table table-hover">
+            <colgroup>
+                <col style="width:15%">
+                <col style="width:15%">
+                <col style="width:50%">
+                <col style="width:20%">
+            </colgroup>
+            <thead>
+                <tr>
+                    <th scope="col">번호</th>
+                    <th scope="col">제목</th>
+                    <th scope="col">내용</th>
+                    <th scope="col">게시일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="boarder link-list" data-href="{% url 'post_detail' pk=post.pk %}">
+                    <td>
+                        {{ post.pk|stringformat:"02d" }}
+                    </td>
+                    <td>
+                        {{ post.title }}
+                    </td>
+                    <td class="date">{{ post.text|truncatechars:200}}</td>
+                    <td class="date">{{ post.published_date }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    {% endfor %}
+{% endblock %}

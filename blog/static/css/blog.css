@@ -69,3 +69,17 @@ h4 {
 .btn-link:hover {
     opacity: 0.5 !important;
 }
+
+
+
+tr.boarder {
+    cursor: pointer;
+}
+
+.visited-link {
+    background-color: yellow;
+}
+
+.translucent {
+    opacity: 0.5;
+}
