@@ -2,7 +2,6 @@
 
 {% block content %}
     <h1>임시 저장 글</h1>
-    {% for post in posts %}
     <div class="post">
         <table class="table table-hover">
             <colgroup>
@@ -20,6 +19,7 @@
                 </tr>
             </thead>
             <tbody>
+                {% for post in posts %}
                 <tr class="boarder link-list" data-href="{% url 'post_detail' pk=post.pk %}">
                     <td>
                         {{ post.pk|stringformat:"02d" }}
@@ -30,8 +30,8 @@
                     <td class="date">{{ post.text|truncatechars:200}}</td>
                     <td class="date">{{ post.published_date }}</td>
                 </tr>
+                {% endfor %}
             </tbody>
         </table>
     </div>
-    {% endfor %}
 {% endblock %}

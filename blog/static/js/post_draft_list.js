@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $('table tr').click(function () {
+    $('table .boarder').click(function () {
         window.location = $(this).data('href');
         return false;
     });
