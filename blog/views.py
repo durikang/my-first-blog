@@ -47,6 +47,7 @@ def comment_remove(request,pk):
     return redirect('post_detail',pk=comment.post.pk)
 
 #게시글 생성 로직
+@login_required
 def post_create(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -62,6 +63,7 @@ def post_create(request):
     return render(request, 'blog/post_create.html',{'form':form})
 
 # 게시글 수정 로직
+@login_required
 def post_update(request,pk):
     post =get_object_or_404(Post, pk=pk)
     if request.method =="POST":
@@ -76,18 +78,24 @@ def post_update(request,pk):
         form = PostForm(instance = post)
     return render(request, 'blog/post_update.html',{'form':form})
 
+@login_required
 def post_delete(request,pk):
     post = get_object_or_404(Post,pk=pk)
     post.delete()
     return redirect('post_list')
 
 # 임시 저장 게시판 리스트
+@login_required
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull = True).order_by('created_date')
     return render(request, 'blog/post_draft_list.html', {'posts': posts})
 
 # 임시 저장글에서 게시하기 로직
+@login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('post_detail', pk=pk)
+
+def login(request):
+    return render(request,'')
