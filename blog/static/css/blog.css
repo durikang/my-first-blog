@@ -26,8 +26,24 @@
     font-size: 0.875rem !important;
 }
 
+p.top-menu.intro-lg {
+    font-size: 1rem;
+    color: white;
+    margin: 0;
+}
+
+a.lg-out-btn:hover {
+    color: yellow;
+}
+
+a.lg-out-btn {
+    text-decoration: none;
+    color: white;
+    font-size: 0.825rem;
+}
+
 .container {
-    margin: 0 auto;
+    margin: 100px auto 0;
     text-align: center;
 }
 
