@@ -16,7 +16,7 @@ def post_detail(request,pk):
     comments = Comment.objects.filter(post = post)
     return render(request, 'blog/post_detail.html',{'post':post,'comments':comments})
 
-# 댓글 기능 로직(댓글 리스트 보여주기)
+# 댓글 기능 로직(댓글 등록)
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":

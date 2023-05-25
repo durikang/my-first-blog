@@ -6,7 +6,6 @@
 }
 
 .page-header {
-    border-bottom: 1px solid #e8e8e8;
     margin-top: 0;
     padding: 20px 20px 20px 40px;
     background-color: #2e4361;
@@ -42,9 +41,13 @@ a.lg-out-btn {
     font-size: 0.825rem;
 }
 
-.container {
+.content {
     margin: 100px auto 0;
     text-align: center;
+}
+
+.post {
+    margin-bottom: 30px;
 }
 
 h1,
@@ -56,6 +59,7 @@ h4 {
 
 .date {
     color: #828282;
+    font-size: 0.725rem;
 }
 
 .save {
@@ -75,10 +79,16 @@ h4 {
     margin-right: 20px;
 }
 
-.post {
-    margin-bottom: 70px;
-    border-bottom: 1px solid #e8e8e8;
+i.bi.top-fn-btn-style {
+    color: white;
 }
+
+i.bi.top-fn-btn-style:hover {
+    color: var(--bs-link-color);
+}
+
+
+
 
 .btn-no-underline {
     text-decoration: none !important;
@@ -104,4 +114,8 @@ tr.boarder {
 
 .comment {
     margin: 20px 0px 20px 20px;
+}
+
+.comment-lst {
+    text-decoration: none;
 }
