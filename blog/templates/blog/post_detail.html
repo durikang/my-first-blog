@@ -3,9 +3,6 @@
 {% block content %}
     <div class="post">
         {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
-            </div>
         {% else %}
              <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk%}">게시하기</a>    
         {% endif %}
@@ -13,40 +10,58 @@
         <a class="btn btn-default" href="{% url 'post_update' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
         <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
         {% endif %}
-        <h1 class="post-title">{{ post.title }}</h1>
-        <p class="post-contents">{{ post.text|linebreaksbr }}</p>
+        <h1 class="post-title"></h1>
+        <p class="post-contents"></p>
     </div>
-    <hr>
-    <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">댓글 달기</a>
-    
-    {% for comment in comments %}
-        <div class="comment">
-            <div class="date">
-                {% if comment.post.approved_comments and user.is_authenticated %}
-                    {{ comment.created_date }}
-                    <a class="btn btn-default" href="{% url 'comment_remove' comment.pk %}">
-                        <span class="glyphicon glyphicon-remove"></span>
-                    </a>
-                {% elif comment.post.approved_comments %}
-                    <p>This comment is pending approval.</p>
-                    <a class="btn btn-default" href="{% url 'comment_approve' comment.pk %}">
-                        <span class="glyphicon glyphicon-ok"></span>
-                    </a>
-                {% endif %}
+
+    <div class="container mt-5">
+        <div class="card border-start-0 border-end-0 mx-5">
+            <div class="card-header border-top-3 title">
+                <h5>{{ post.title }}</h5>
             </div>
-            {% if not comment.post.approved_comments %}
-                <p>This comment is pending approval.</p>
-                <a class="btn btn-default" href="{% url 'comment_approve' comment.pk %}">
-                    <span class="glyphicon glyphicon-ok"></span>
-                </a>
-            {% else %}
-                <strong>{{ comment.author }}</strong>
-                <p>{{ comment.text|linebreaks }}</p>
-            {% endif %}
+            <div class="card-header bg-white">
+                <div class="date top-menu">{{ post.published_date }}</div>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ post.text|linebreaksbr }}</p>
+            </div>
+            <div class="card-footer bg-white commentstyle">
+                <i class="bi bi-chat-dots-fill"></i> 댓글
+            </div>
+            <div class="card-footer bg-white commentstyle">
+                <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">댓글 달기</a>
+            {% for comment in comments %}
+                <div class="comment">
+                    <div class="date">
+                        {% if comment.post.approved_comments and user.is_authenticated %}
+                            {{ comment.created_date }}
+                            <a class="btn btn-default" href="{% url 'comment_remove' comment.pk %}">
+                                <span class="glyphicon glyphicon-remove"></span>
+                            </a>
+                        {% elif comment.post.approved_comments %}
+                            <p>This comment is pending approval.</p>
+                            <a class="btn btn-default" href="{% url 'comment_approve' comment.pk %}">
+                                <span class="glyphicon glyphicon-ok"></span>
+                            </a>
+                        {% endif %}
+                    </div>
+                    {% if not comment.post.approved_comments %}
+                        <p>This comment is pending approval.</p>
+                        <a class="btn btn-default" href="{% url 'comment_approve' comment.pk %}">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </a>
+                    {% else %}
+                        <strong>{{ comment.author }}</strong>
+                        <p>{{ comment.text|linebreaks }}</p>
+                    {% endif %}
+                </div>
+            {% empty %}
+                <div class="comment">
+                    <p>아직 등록된 댓글이 없습니다. 댓글을 등록해주세요</p>
+                </div>
+            {% endfor %}
+            </div>
         </div>
-    {% empty %}
-        <div class="comment">
-            <p>아직 등록된 댓글이 없습니다. 댓글을 등록해주세요</p>
-        </div>
-    {% endfor %}
+    </div>
+    
 {% endblock %}

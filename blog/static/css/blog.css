@@ -57,10 +57,11 @@ h4 {
     font-family: 'Lobster', cursive;
 }
 
-.date {
+.top-menu.date {
     color: #828282;
-    font-size: 0.725rem;
+    font-size: 0.725rem !important;
 }
+
 
 .save {
     float: right;
@@ -118,4 +119,13 @@ tr.boarder {
 
 .comment-lst {
     text-decoration: none;
+}
+
+.articleWrapper {
+    overflow: auto;
+    margin-top: 0.5rem;
+}
+
+.commentstyle {
+    text-align: left;
 }
