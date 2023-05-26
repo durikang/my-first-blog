@@ -8,6 +8,9 @@
             <h5>{{ post.title }}</h5>
         </div>
         <div class="card-header bg-white">
+            <div class="writer float-start mt-2">
+                게시자 : {{ user.last_name }}{{ user.first_name }}
+            </div>
             <div class="date top-menu">
                 {% if post.published_date %}
                 {% else %}
