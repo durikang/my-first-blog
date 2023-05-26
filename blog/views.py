@@ -56,7 +56,15 @@ def post_create(request):
             post.author = request.user
             # post.published_date = timezone.now()
             post.save()
-            return redirect('post_detail', pk=post.pk)
+            
+            action = request.POST.get('action')
+
+            print(action)
+
+            if action == 'save':
+                return redirect('post_publish', pk=post.pk)
+            elif action == 'save_temporary':
+                return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
         

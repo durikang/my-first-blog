@@ -2,8 +2,11 @@
 
 {% block content %}
     <h1>새 글쓰기</h1>
-    <form method="POST" class="post-form">{% csrf_token %}
+    <form method="POST" class="post-form">
+        {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit" class="save btn btn-default">저장</button>
+        <button type="submit" class="save btn btn-default" name="action" value="save">저장</button>
+        <button type="submit" class="save btn btn-default" name="action" value="save_temporary">임시 저장</button>
     </form>
 {% endblock %}
+
