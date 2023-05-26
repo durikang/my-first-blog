@@ -1,67 +1,74 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <div class="post">
-        {% if post.published_date %}
-        {% else %}
-             <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk%}">게시하기</a>    
-        {% endif %}
-        {% if user.is_authenticated %}
-        <a class="btn btn-default" href="{% url 'post_update' pk=post.pk %}"><span class="glyphicon glyphicon-pencil"></span></a>
-        <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}"><span class="glyphicon glyphicon-remove"></span></a>
-        {% endif %}
-        <h1 class="post-title"></h1>
-        <p class="post-contents"></p>
-    </div>
 
-    <div class="container mt-5">
-        <div class="card border-start-0 border-end-0 mx-5">
-            <div class="card-header border-top-3 title">
-                <h5>{{ post.title }}</h5>
-            </div>
-            <div class="card-header bg-white">
-                <div class="date top-menu">{{ post.published_date }}</div>
-            </div>
-            <div class="card-body">
-                <p class="card-text">{{ post.text|linebreaksbr }}</p>
-            </div>
-            <div class="card-footer bg-white commentstyle">
-                <i class="bi bi-chat-dots-fill"></i> 댓글
-            </div>
-            <div class="card-footer bg-white commentstyle">
-                <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">댓글 달기</a>
-            {% for comment in comments %}
-                <div class="comment">
-                    <div class="date">
-                        {% if comment.post.approved_comments and user.is_authenticated %}
-                            {{ comment.created_date }}
-                            <a class="btn btn-default" href="{% url 'comment_remove' comment.pk %}">
-                                <span class="glyphicon glyphicon-remove"></span>
-                            </a>
-                        {% elif comment.post.approved_comments %}
-                            <p>This comment is pending approval.</p>
-                            <a class="btn btn-default" href="{% url 'comment_approve' comment.pk %}">
-                                <span class="glyphicon glyphicon-ok"></span>
-                            </a>
-                        {% endif %}
-                    </div>
-                    {% if not comment.post.approved_comments %}
-                        <p>This comment is pending approval.</p>
-                        <a class="btn btn-default" href="{% url 'comment_approve' comment.pk %}">
-                            <span class="glyphicon glyphicon-ok"></span>
-                        </a>
-                    {% else %}
-                        <strong>{{ comment.author }}</strong>
-                        <p>{{ comment.text|linebreaks }}</p>
-                    {% endif %}
-                </div>
-            {% empty %}
-                <div class="comment">
-                    <p>아직 등록된 댓글이 없습니다. 댓글을 등록해주세요</p>
-                </div>
-            {% endfor %}
+<div class="container mt-5">
+    <div class="card border-start-0 border-end-0 mxc">
+        <div class="card-header border-top-3 title">
+            <h5>{{ post.title }}</h5>
+        </div>
+        <div class="card-header bg-white">
+            <div class="date top-menu">
+                {% if post.published_date %}
+                {% else %}
+                <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk%}">
+                    게시하기
+                </a>
+                {% endif %}
+                {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'post_update' pk=post.pk %}">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}">
+                    <i class="bi bi-trash-fill"></i>
+                </a>
+                {% endif %}
+                {{ post.published_date }}
             </div>
         </div>
+        <div class="card-body my-5 primary">
+            <div class="card-text bd-contents">{{ post.text|linebreaksbr }}</div>
+        </div>
+        <div class="card-footer commentstyle">
+            <i class="bi bi-chat-dots-fill"></i> 댓글
+        </div>
+
+        <div class="card-footer commentstyle">
+            <a class="btn btn-default" href="{% url 'add_comment_to_post' pk=post.pk %}">댓글 달기</a>
+
+            <div class="list-group">
+                {% for comment in comments %}
+                <div class="list-group-item">
+                    <div class="media">
+                        <div class="media-body">
+                            <h5 class="mt-0">{{ comment.author }}</h5>
+                            <p>{{ comment.text }}</p>
+                            <div class="text675rem">{{ comment.created_date }}</div>
+                            {% if user.is_authenticated and user.is_superuser  %}
+                            <form action="{% url 'comment_remove' comment.id %}" method="post" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                            </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="list-group-item">
+                    <p>아직 등록된 댓글이 없네요 :)</p>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+
+
+
+
+
+
     </div>
-    
+</div>
+
 {% endblock %}

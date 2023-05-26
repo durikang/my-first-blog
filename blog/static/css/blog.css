@@ -129,3 +129,17 @@ tr.boarder {
 .commentstyle {
     text-align: left;
 }
+
+.card.border-start-0.border-end-0.mxc {
+    margin-left: 150px !important;
+    margin-right: 150px !important;
+}
+
+.text675rem {
+    font-size: 0.675rem;
+
+}
+
+.bd-contents {
+    text-align: initial !important;
+}
