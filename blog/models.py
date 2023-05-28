@@ -5,13 +5,13 @@ from django.utils import timezone
 
 
 class Post(models.Model):
+    # ...
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=200)
     text = models.TextField()
-    created_date = models.DateTimeField(
-            default=timezone.now)
-    published_date = models.DateTimeField(
-            blank=True, null=True)
+    created_date = models.DateTimeField(default=timezone.now)
+    published_date = models.DateTimeField(blank=True, null=True)
+    views = models.IntegerField(default=0)  # 조회수 필드 추가
 
     def publish(self):
         self.published_date = timezone.now()
@@ -19,8 +19,11 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-    
-    
+
+    def increase_views(self):
+        self.views += 1
+        self.save()
+        
 class Comment(models.Model):
     post = models.ForeignKey('blog.Post', on_delete=models.CASCADE, related_name='comments')
     author = models.CharField(max_length=200)

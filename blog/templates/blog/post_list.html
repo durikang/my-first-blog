@@ -6,16 +6,24 @@
         <li class="list-group-item">
             <div class="row">
                 <div class="col-md-8">
-                    <a class="btn-link text-black btn-no-underline" href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+                    <a class="btn-link text-black btn-no-underline" href="{% url 'post_detail' pk=post.pk %}">
+                        {% if post.title|length > 45 %}
+                            {{ post.title|slice:":45" }}...
+                        {% else %}
+                            {{ post.title }}
+                        {% endif %}
+                    </a>
                     <a class="comment-lst ml-2" href="{% url 'post_detail' pk=post.pk %}">댓글: {{ post.comments.count }}</a>
                 </div>
                 <div class="col-md-4 text-right">
                     <div class="post-date small text-muted" style="opacity: 0.8">게시일: {{ post.published_date }}</div>
+                    <div class="post-views small text-muted" style="opacity: 0.8">조회수: {{ post.views }}</div>
                 </div>
             </div>
         </li>
     {% endfor %}
 </ol>
+
 <div class="pagination justify-content-center">
     <ul class="pagination">
         {% if page_obj.has_previous %}

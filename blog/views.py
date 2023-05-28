@@ -5,8 +5,10 @@ from django.utils import timezone
 from django.core.paginator import Paginator
 from .models import Post,Comment
 from .forms import PostForm,CommentForm
+from django.views.decorators.cache import never_cache
 
 #게시글 리스트 로직
+@never_cache
 def post_list(request):
     post_list = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
     paginator = Paginator(post_list,10) #페이지당 10개의 게시글을 보여줍니다.
@@ -15,10 +17,20 @@ def post_list(request):
     return render(request,'blog/post_list.html',{'page_obj' : page_obj})
 
 #게시글 상세보기 로직
-def post_detail(request,pk):
-    post = get_object_or_404(Post,pk=pk)
-    comments = Comment.objects.filter(post = post)
-    return render(request, 'blog/post_detail.html',{'post':post,'comments':comments})
+@never_cache
+def post_detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comments = Comment.objects.filter(post=post)
+    
+    # 중복 방문 체크
+    session_key = f'post_viewed_{pk}'  # 세션 키 생성
+    if not request.session.get(session_key, False):
+        # 세션에 방문 기록이 없는 경우 조회수 증가
+        post.increase_views()
+        request.session[session_key] = True  # 세션에 방문 기록 저장
+    
+    return render(request, 'blog/post_detail.html', {'post': post, 'comments': comments})
+
 #게시글 생성 로직
 @login_required
 def post_create(request):

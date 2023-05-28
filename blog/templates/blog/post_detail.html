@@ -11,17 +11,18 @@
             <div class="writer float-start mt-2">
                 게시자 :{{ post.author.last_name }}{{ post.author.first_name }}
             </div>
-            <div class="date top-menu">
-                {% if user.is_authenticated %}
-                <a class="btn btn-default" href="{% url 'post_update' pk=post.pk %}">
-                    <i class="bi bi-pencil-square"></i>
-                </a>
-                <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}">
-                    <i class="bi bi-trash-fill"></i>
-                </a>
-                {% endif %}
-                {{ post.published_date }}
-            </div>
+        <div class="date top-menu">
+            {% if user.is_authenticated %}
+            <a class="btn btn-default" href="{% url 'post_update' pk=post.pk %}">
+                <i class="bi bi-pencil-square"></i>
+            </a>
+            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}">
+                <i class="bi bi-trash-fill"></i>
+            </a>
+            {% endif %}
+            {{ post.published_date }} | 조회 수: {{ post.views }}
+        </div>
+            
         </div>
         <div class="card-body my-5 primary">
             <div class="card-text bd-contents">{{ post.text|linebreaksbr }}</div>
