@@ -2,13 +2,17 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404,redirect
 from django.middleware import csrf
 from django.utils import timezone
+from django.core.paginator import Paginator
 from .models import Post,Comment
 from .forms import PostForm,CommentForm
 
 #게시글 리스트 로직
 def post_list(request):
-    posts = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
-    return render(request,'blog/post_list.html',{'posts' : posts})
+    post_list = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
+    paginator = Paginator(post_list,10) #페이지당 10개의 게시글을 보여줍니다.
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request,'blog/post_list.html',{'page_obj' : page_obj})
 
 #게시글 상세보기 로직
 def post_detail(request,pk):
@@ -53,7 +57,7 @@ def post_delete(request,pk):
     post.delete()
     return redirect('post_list')
 
-
+ 
 # 댓글 기능 로직(댓글 등록)
 def add_comment_to_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
