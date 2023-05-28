@@ -1,0 +1,131 @@
+[33mcommit 98c6f3d844a26ce6a01b3203cf967b8aafe21c42[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Fri May 26 12:03:33 2023 +0900
+
+    게시자 수정
+
+[33mcommit 9f08c031f32b808df47ff12cc8551897d0d90bba[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Fri May 26 11:31:11 2023 +0900
+
+    상세보기 게시자 추가
+
+[33mcommit f5b2e9524c4fe98ed6932d72844318e132c5a6f0[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Fri May 26 11:18:58 2023 +0900
+
+    상세보기 모바일 반응형으로 변경
+
+[33mcommit ae9028ec6fab5fa82ad9729a861b698c1ecbf5ab[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Fri May 26 10:53:23 2023 +0900
+
+    테스트
+
+[33mcommit d1363a5ee766df43797221ee3075c2455f6bf2f5[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Fri May 26 09:50:23 2023 +0900
+
+    사용자 권한 로직 변경
+
+[33mcommit ccc2c637621943e6b37e0a7502bc7900ce5e31ff[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Thu May 25 21:30:56 2023 +0900
+
+    상세보기 css 수정
+
+[33mcommit 49f6fc5813adf741596b64d61ed468e679daaefb[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Thu May 25 18:16:08 2023 +0900
+
+    css 수정
+
+[33mcommit bed7f884427432a58b4e37ad2608fa66a4016dec[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Thu May 25 15:55:36 2023 +0900
+
+    css변경
+
+[33mcommit 44d5092f8aa69e3e1d1c6fbecaa079c57fdd857d[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Thu May 25 15:40:25 2023 +0900
+
+    메인 사이트 수정중
+
+[33mcommit c3b1d8a2039015edcec8c535845ed80dbd1a9215[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Thu May 25 11:09:43 2023 +0900
+
+    로그인 기능 개선 및 보안성 향상
+
+[33mcommit eb5419c059c39a4bdbb0b85d0cd791ae544cb40c[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Wed May 24 23:01:24 2023 +0900
+
+    20230524 아직 덜만들긴 했음
+
+[33mcommit 26daba7d059f52241d12559d8110566678b81051[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Wed May 24 17:29:35 2023 +0900
+
+    2023052403 임시 저장글 버그 수정 및 테이블 수정
+
+[33mcommit 648e77031608442e49952fec7e1cdd1505a07032[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Wed May 24 17:09:55 2023 +0900
+
+    2023052402 임시 게시글 등록 및 게시글 삭제 로직 구현
+
+[33mcommit c2dc33a31dd23ca04df2b5b2d83f8239f16efba7[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Wed May 24 12:23:46 2023 +0900
+
+    2023052401 전반적인 css 수정(bootstrap)의 사용과 CRU 까지 작업
+
+[33mcommit fe66936c7901b1bff2c29a6c6a3610ab3bb07efc[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Tue May 23 23:41:50 2023 +0900
+
+    202305232341 업데이트
+
+[33mcommit 1c8f77ebeaab5379fd7da0efe7e7787ac97e7071[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Tue May 23 22:50:22 2023 +0900
+
+    Added Update 202305232350_v
+
+[33mcommit c412c051f9b00ffde174950c0897ba9e62c36b72[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Tue May 23 21:26:43 2023 +0900
+
+    202305232126 css 업데이트
+
+[33mcommit 3df439cdb3bc0aa67d6d0451e6fbb0f9cec2391c[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Tue May 23 19:28:59 2023 +0900
+
+    202305230728 업데이트
+
+[33mcommit 5e73b874f302320f7ee61a160d4a4a8a57ace55f[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Tue May 23 18:44:00 2023 +0900
+
+    바뀐것 친구한태 보여주기.
+
+[33mcommit ffe834fbadde956f3d313bb2e4c1175b075454ba[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Tue May 23 18:42:03 2023 +0900
+
+    바뀐것 친구한태 보여주기.
+
+[33mcommit fccef439c7068199defa3d657eb7005d18c25043[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Tue May 23 11:02:02 2023 +0900
+
+    Changed the HTML for the Site.
+
+[33mcommit 213bbbe05038fc7edd6bce012dee8b11c4d13f70[m
+Author: DuriKang <kooda21@naver.com>
+Date:   Mon May 22 15:04:23 2023 +0900
+
+    My Django Blog Project, first commit

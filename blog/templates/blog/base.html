@@ -17,14 +17,14 @@
         function getFetchVersion(file) {
             return new Promise((resolve, reject) => {
                 fetch(file)
-                .then(r => {
-                    let lastModGmt = new Date(r.headers.get('Last-Modified'));
-                    let lastModUtc = new Date(lastModGmt.getTime() + (lastModGmt.getTimezoneOffset() * 60000) + (9 * 60 * 60000));
-                    resolve(fetchCallback(file + '?' + lastModUtc.toLocaleString()));
-                })
-                .catch(er => {
-                    reject(er.message);
-                });
+                    .then(r => {
+                        let lastModGmt = new Date(r.headers.get('Last-Modified'));
+                        let lastModUtc = new Date(lastModGmt.getTime() + (lastModGmt.getTimezoneOffset() * 60000) + (9 * 60 * 60000));
+                        resolve(fetchCallback(file + '?' + lastModUtc.toLocaleString()));
+                    })
+                    .catch(er => {
+                        reject(er.message);
+                    });
             });
         }
 
@@ -37,54 +37,97 @@
         }
 
         getFetchVersion('/static/css/blog.css')
-        .catch(error => {
-            console.error(error);
-        });
+            .catch(error => {
+                console.error(error);
+            });
     </script>
 
 </head>
-<body>
-    <div class="page-header">
-        <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand text-white" href="/">두리의 놀이터</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active text-white" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white" href="#">Link</a>
-                </li>
-            </ul>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            {% if user.is_authenticated %}
-                <div class="nav-top-btn">
-                    <a href="{% url 'post_create' %}" class="top-menu"><i class="bi bi-pencil-square top-fn-btn-style"></i></a>
-                    <a href="{% url 'post_draft_list' %}" class="top-menu"><i class="bi bi-card-checklist top-fn-btn-style"></i></a>
-                </div>
-                <p class="top-menu intro-lg">안녕하세요. {{ user.username }} (<a class="lg-out-btn" href="{% url 'logout' %}">로그 아웃</a>)</p>
-            {% else %}
-                <button type="button" onclick="window.location.href='{% url 'login' %}'" class="btn btn-light top-menu lg-btn-fs875">로그인</button>
-            {% endif %}
-            </div>
-        </div>
-        </nav>
-    </div>
-    <div class="main">
-        <div class="content">
-            <div class="section">
-                {% block content %}
-                {% endblock %}
-            </div>
-        </div>
-    </div>
 
+<body>
+    <div id="body-wrapper">
+        <!-- 네비게이션 바 -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="/">두리의 놀이터</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="네비게이션 토글">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">로그아웃</a>
+                        </li>
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'login' %}">로그인</a>
+                        </li>
+                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">소개</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">연락처</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- 히어로 섹션 -->
+        <section class="jumbotron text-center">
+            <div class="container">
+                <h1 class="display-4">커뮤니티에 오신 것을 환영합니다</h1>
+                <p class="lead">우리 커뮤니티에 참여하여 비슷한 관심사를 가진 사람들과 연결하세요.</p>
+            </div>
+        </section>
+
+        <!-- 주요 콘텐츠 -->
+        <main id="body-content" class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">공지사항</h2>
+                            <p class="card-text">커뮤니티의 최신 뉴스와 업데이트를 확인하세요.</p>
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">게시글</h2>
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">자주 묻는 질문</h2>
+                            <p class="card-text">자주 묻는 질문과 답변을 확인하세요.</p>
+                            {% comment %} <a href="#" class="btn btn-primary">더 읽기</a> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h2 class="card-title">회원 가입</h2>
+                            <p class="card-text">커뮤니티에 가입하여 멤버십 혜택을 받으세요.</p>
+                            {% comment %} <a href="#" class="btn btn-primary">가입하기</a> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        {% comment %} Footer {% endcomment %}
+
+    </div>
+    <!-- 푸터 -->
+    <footer class="footer bg-dark text-white py-4">
+        <div class="container text-center">
+            <span>&copy; 2023 커뮤니티. All rights reserved.</span>
+        </div>
+    </footer>
 </body>
 
 </html>

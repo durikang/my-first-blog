@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<div class="container mt-5">
+<div class="container">
     <div class="card border-0">
         <div class="card-header border-0 title">
             <h5>{{ post.title }}</h5>
@@ -12,12 +12,6 @@
                 게시자 :{{ post.author.last_name }}{{ post.author.first_name }}
             </div>
             <div class="date top-menu">
-                {% if post.published_date %}
-                {% else %}
-                <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk%}">
-                    게시하기
-                </a>
-                {% endif %}
                 {% if user.is_authenticated %}
                 <a class="btn btn-default" href="{% url 'post_update' pk=post.pk %}">
                     <i class="bi bi-pencil-square"></i>
