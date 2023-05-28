@@ -60,6 +60,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'logout' %}">로그아웃</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="{% url 'post_create' %}"><i class="bi bi-pencil-square top-fn-btn-style"></i></a>
+                        </li>
                         {% else %}
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="{% url 'login' %}">로그인</a>
@@ -122,12 +125,18 @@
         {% comment %} Footer {% endcomment %}
 
     </div>
-    <!-- 푸터 -->
-    <footer class="footer bg-dark text-white py-4">
+    {% comment %} 푸터 {% endcomment %}
+    {% block footer %}
+
+    {% endblock%}
+
+    <footer class="footer bg-dark text-white py-4 fixed-bottom">
         <div class="container text-center">
-            <span>&copy; 2023 커뮤니티. All rights reserved.</span>
+            <span>© 2023 커뮤니티. All rights reserved.</span>
         </div>
     </footer>
+
+
 </body>
 
 </html>

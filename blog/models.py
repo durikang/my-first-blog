@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-
+from ckeditor.fields import RichTextField
 
 class Post(models.Model):
     # ...
@@ -21,7 +21,7 @@ class Post(models.Model):
         return self.title
 
     def increase_views(self):
-        self.views += 1
+        self.views += 1 
         self.save()
         
 class Comment(models.Model):
@@ -32,5 +32,12 @@ class Comment(models.Model):
     
     def __str__(self):
         return self.text
+    
+class Footer(models.Model):
+    content = models.TextField()
+
+    def __str__(self):
+        return self.content[:50]  # 필요에 따라 출력 형식을 설정합니다.
+
     
  
