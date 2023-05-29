@@ -40,8 +40,8 @@
                     <div class="media">
                         <div class="media-body">
                             <h5 class="mt-0">{{ comment.author }}</h5>
-                            <p>{{ comment.text }}</p>
-                            <div class="text675rem">{{ comment.created_date }}</div>
+                            <p>{{ comment.text|striptags }}</p>
+                            <div class="text675rem"> {{ comment.created_date }}</div>
                             {% if user.is_authenticated and user.is_superuser  %}
                             <form action="{% url 'comment_remove' comment.id %}" method="post" style="display: inline;">
                                 {% csrf_token %}

@@ -1,0 +1,163 @@
+@font-face {
+    font-family: 'HANAMDAUM';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2304-2@1.0/HANAMDAUM.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+}
+
+.page-header {
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+    background-color: #2e4361;
+}
+
+
+.page-header h1,
+.page-header h1 a,
+.page-header h1 a:visited,
+.page-header h1 a:active {
+    color: white;
+    font-size: 36pt;
+    text-decoration: none;
+}
+
+.lg-btn-fs875 {
+    font-size: 0.875rem !important;
+}
+
+p.top-menu.intro-lg {
+    font-size: 1rem;
+    color: white;
+    margin: 0;
+}
+
+a.lg-out-btn:hover {
+    color: yellow;
+}
+
+a.lg-out-btn {
+    text-decoration: none;
+    color: white;
+    font-size: 0.825rem;
+}
+
+.content {
+    margin: 100px auto 0;
+    text-align: center;
+}
+
+.post {
+    margin-bottom: 30px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Lobster', cursive;
+}
+
+.top-menu.date {
+    color: #828282;
+    font-size: 0.725rem !important;
+}
+
+
+.save {
+    float: right;
+}
+
+.post-form textarea,
+.post-form input {
+    width: 100%;
+}
+
+.top-menu,
+.top-menu:hover,
+.top-menu:visited {
+    float: right;
+    font-size: 1.5rem;
+    margin-right: 20px;
+}
+
+i.bi.top-fn-btn-style {
+    color: white;
+}
+
+i.bi.top-fn-btn-style:hover {
+    color: var(--bs-link-color);
+}
+
+
+
+
+.btn-no-underline {
+    text-decoration: none !important;
+}
+
+.btn-link {
+    color: black !important;
+}
+
+.btn-link:hover {
+    opacity: 0.5 !important;
+}
+
+
+
+tr.boarder {
+    cursor: pointer;
+}
+
+.visited-link {
+    background-color: yellow;
+}
+
+.comment {
+    margin: 20px 0px 20px 20px;
+}
+
+.comment-lst {
+    text-decoration: none;
+}
+
+.articleWrapper {
+    overflow: auto;
+    margin-top: 0.5rem;
+}
+
+.commentstyle {
+    text-align: left;
+}
+
+.card.border-start-0.border-end-0.mxc {
+    margin-left: 150px !important;
+    margin-right: 150px !important;
+}
+
+.text675rem {
+    font-size: 0.675rem;
+
+}
+
+.bd-contents {
+    text-align: initial !important;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+}
+
+.footer {
+    flex-shrink: 0;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
