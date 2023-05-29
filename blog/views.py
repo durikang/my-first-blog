@@ -4,8 +4,8 @@ from django.views.decorators.cache import never_cache
 from django.core.paginator import Paginator
 from django.middleware import csrf
 from django.utils import timezone
-from .models import Post,Comment,Footer
-from .forms import PostForm,CommentForm,FooterForm
+from .models import Post,Comment
+from .forms import PostForm,CommentForm
 
 #게시글 리스트 로직
 @never_cache
