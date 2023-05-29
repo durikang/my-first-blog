@@ -100,13 +100,3 @@ def comment_remove(request,pk):
     comment.delete()
     return redirect('post_detail',pk=comment.post.pk)
 
-def index_footer(request):
-    footer = Footer.objects.first()
-    if request.method == 'POST':
-        form = FooterForm(request.POST, instance=footer)
-        if form.is_valid():
-            form.save()
-            return redirect('blog:post_list')
-    else:
-        form = FooterForm(instance=footer)
-    return render(request, 'blog/base_footer.html', {'form': form})
