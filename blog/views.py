@@ -11,7 +11,7 @@ from django.views.decorators.cache import never_cache
 @never_cache
 def post_list(request):
     post_list = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
-    paginator = Paginator(post_list,10) #페이지당 10개의 게시글을 보여줍니다.
+    paginator = Paginator(post_list,5) #페이지당 5개의 게시글을 보여줍니다.
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
     return render(request,'blog/post_list.html',{'page_obj' : page_obj})
@@ -99,3 +99,4 @@ def comment_remove(request,pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail',pk=comment.post.pk)
+
