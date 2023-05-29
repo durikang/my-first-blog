@@ -5,6 +5,7 @@
     <form method="POST" class="post-form form-control">
         {% csrf_token %}
     {{ form.title }}
+    {{form.media}}  
     {{ form.text|safe }}
         <button type="submit" class="save btn btn-default" name="action" value="save">저장</button>
     </form>
