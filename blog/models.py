@@ -31,11 +31,6 @@ class Comment(models.Model):
     def __str__(self):
         return self.text
     
-class Footer(models.Model):
-    content = models.TextField()
-
-    def __str__(self):
-        return self.content[:50]  # 필요에 따라 출력 형식을 설정합니다.
 
     
  
