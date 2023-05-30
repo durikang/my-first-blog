@@ -47,7 +47,7 @@
 </head>
 
 <body>
-    <div id="body-wrapper">
+    <div id="content body-wrapper mb-3" style="margin-bottom: 8.5rem !important;">
         <!-- 네비게이션 바 -->
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
@@ -91,7 +91,7 @@
         <!-- 주요 콘텐츠 -->
         <main id="body-content" class="container">
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-8-mb-3">
                     <div class="card mb-4">
                         <div class="card-body">
                             <h2 class="card-title">공지사항</h2>
@@ -100,25 +100,9 @@
                     </div>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h2 class="card-title">게시글</h2>
+                            <h2 class="card-title text-center">게시글</h2>
                             {% block content %}
                             {% endblock %}
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h2 class="card-title">자주 묻는 질문</h2>
-                            <p class="card-text">자주 묻는 질문과 답변을 확인하세요.</p>
-                            {% comment %} <a href="#" class="btn btn-primary">더 읽기</a> {% endcomment %}
-                        </div>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h2 class="card-title">회원 가입</h2>
-                            <p class="card-text">커뮤니티에 가입하여 멤버십 혜택을 받으세요.</p>
-                            {% comment %} <a href="#" class="btn btn-primary">가입하기</a> {% endcomment %}
                         </div>
                     </div>
                 </div>

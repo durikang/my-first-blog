@@ -1,13 +1,16 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-    <h1>새 글쓰기</h1>
-    <form method="POST" class="post-form form-control">
-        {% csrf_token %}
-    {{ form.title }}
-    {{form.media}}  
-    {{ form.text|safe }}
-        <button type="submit" class="save btn btn-default" name="action" value="save">저장</button>
-    </form>
+<h1>새 글쓰기</h1>
+<form method="POST" class="post-form form-control" style="margin-bottom: 60px;">
+    {% csrf_token %}
+    제목 {{ form.title }}
+    {{ form.media }}
+    <textarea id="editor" name="text" style="width: 100%; height: 300px;">{{ form.text.value|safe }}</textarea>
+    <script>
+        CKEDITOR.replace('editor');
+    </script>
+    <button type="submit" class="save btn btn-default" name="action" value="save" style="
+    margin-top: 10px;">저장</button>
+</form>
 {% endblock %}
-
