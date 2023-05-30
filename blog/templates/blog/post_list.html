@@ -16,14 +16,14 @@
                     <a class="comment-lst ml-2" href="{% url 'post_detail' pk=post.pk %}">댓글: {{ post.comments.count }}</a>
                 </div>
                 <div class="col-md-4 text-right">
-                    <div class="post-date small text-muted" style="opacity: 0.8">게시일: {{ post.published_date }}  |   조회수: {{ post.views }}</div>
+                    <div class="post-date small text-muted" style="opacity: 0.8">게시일: {{ post.published_date|date:"Y년 m월 d일 H:i A"|add:"-9 hours" }}  |   조회수: {{ post.views }}</div>
                 </div>
             </div>
         </li>
     {% endfor %}
 </ol>
 
-<div class="pagination justify-content-center">
+<div class="pagination justify-content-center mt-3 mb-1">
     <ul class="pagination">
         {% if page_obj.has_previous %}
             <li class="page-item">

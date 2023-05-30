@@ -81,7 +81,7 @@
             </div>
         </nav>
         <!-- 히어로 섹션 -->
-        <section class="jumbotron text-center">
+        <section class="jumbotron text-center my-3">
             <div class="container">
                 <h1 class="display-4">커뮤니티에 오신 것을 환영합니다</h1>
                 <p class="lead">우리 커뮤니티에 참여하여 비슷한 관심사를 가진 사람들과 연결하세요.</p>
@@ -89,18 +89,22 @@
         </section>
 
         <!-- 주요 콘텐츠 -->
-        <main id="body-content" class="container">
+        <main id="body-content" class="container my-3">
             <div class="row">
                 <div class="col-md-8-mb-3">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h2 class="card-title">공지사항</h2>
-                            <p class="card-text">커뮤니티의 최신 뉴스와 업데이트를 확인하세요.</p>
+                            <label class="d-flex justify-content-center">
+                                <h2 class="card-title">공지사항</h2>
+                            </label> 
+                            <p class="card-text d-flex justify-content-center">커뮤니티의 최신 뉴스와 업데이트를 확인하세요.</p>
                         </div>
                     </div>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h2 class="card-title text-center">게시글</h2>
+                            <label class="d-flex justify-content-center">
+                                <h2 class="card-title">게시글</h2>
+                            </label>
                             {% block content %}
                             {% endblock %}
                         </div>
