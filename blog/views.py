@@ -7,14 +7,24 @@ from django.utils import timezone
 from .models import Post,Comment
 from .forms import PostForm,CommentForm
 
-#게시글 리스트 로직
 @never_cache
 def post_list(request):
-    post_list = Post.objects.filter(published_date__lte = timezone.now()).order_by('-published_date')
-    paginator = Paginator(post_list,5) #페이지당 5개의 게시글을 보여줍니다.
-    page_number = request.GET.get('page')
-    page_obj = paginator.get_page(page_number)
-    return render(request,'blog/post_list.html',{'page_obj' : page_obj})
+    notice_list = Post.objects.filter(is_notice=True, published_date__lte=timezone.now()).order_by('-published_date')
+    content_list = Post.objects.filter(is_notice=False, published_date__lte=timezone.now()).order_by('-published_date')
+    
+    notice_paginator = Paginator(notice_list, 5)  # 공지사항 페이지당 5개의 게시글을 보여줍니다.
+    content_paginator = Paginator(content_list, 5)  # 일반 게시판 페이지당 5개의 게시글을 보여줍니다.
+    
+    notice_page_number = request.GET.get('notice_page')
+    notice_page_obj = notice_paginator.get_page(notice_page_number)
+    
+    content_page_number = request.GET.get('content_page')
+    content_page_obj = content_paginator.get_page(content_page_number)
+    
+    return render(request, 'blog/post_list.html', {
+        'notice_page_obj': notice_page_obj,
+        'content_page_obj': content_page_obj
+    })
 
 #게시글 상세보기 로직
 @never_cache

@@ -10,6 +10,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     views = models.IntegerField(default=0)  # 조회수 필드 추가
+    is_notice = models.BooleanField(default=False)  # 공지사항 여부를 나타내는 필드 추가
 
     def publish(self):
         self.published_date = timezone.now()

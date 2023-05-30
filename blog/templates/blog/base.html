@@ -48,7 +48,7 @@
 
 <body>
     <div id="content body-wrapper mb-3" style="margin-bottom: 8.5rem !important;">
-        <!-- 네비게이션 바 -->
+        {% comment %} 네비게이션 바 {% endcomment %}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="/">두리의 놀이터</a>
@@ -80,7 +80,7 @@
                 </div>
             </div>
         </nav>
-        <!-- 히어로 섹션 -->
+        {% comment %}  히어로 섹션 {% endcomment %}
         <section class="jumbotron text-center my-3">
             <div class="container">
                 <h1 class="display-4">커뮤니티에 오신 것을 환영합니다</h1>
@@ -88,24 +88,25 @@
             </div>
         </section>
 
-        <!-- 주요 콘텐츠 -->
+        {% comment %} 주요 콘텐츠 {% endcomment %}
         <main id="body-content" class="container my-3">
             <div class="row">
                 <div class="col-md-8-mb-3">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <label class="d-flex justify-content-center">
-                                <h2 class="card-title">공지사항</h2>
-                            </label> 
-                            <p class="card-text d-flex justify-content-center">커뮤니티의 최신 뉴스와 업데이트를 확인하세요.</p>
+                            {% comment %} 공지사항 {% endcomment %}
+                            <h2 class="card-title text-center">공지사항</h2>
+                            {% block notice %}
+                            
+                            {% endblock %}
                         </div>
                     </div>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <label class="d-flex justify-content-center">
-                                <h2 class="card-title">게시글</h2>
-                            </label>
+                        {% comment %} 일반 게시판 {% endcomment %}
+                            <h2 class="card-title text-center">게시글</h2>
                             {% block content %}
+                            
                             {% endblock %}
                         </div>
                     </div>
@@ -116,9 +117,6 @@
 
     </div>
     {% comment %} 푸터 {% endcomment %}
-    {% block footer %}
-
-    {% endblock%}
 
     <footer class="footer bg-dark text-white py-4 fixed-bottom">
         <div class="container text-center">

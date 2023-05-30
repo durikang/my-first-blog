@@ -1,0 +1,63 @@
+<div class="pagination justify-content-center mt-3 mb-1">
+    <ul class="pagination">
+        {% if page_obj.has_previous %}
+            {% if notice_flag %}
+                <li class="page-item">
+                    <a class="page-link" href="?notice_page=1">&laquo; 처음</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?notice_page={{ page_obj.previous_page_number }}">이전</a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?content_page=1">&laquo; 처음</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?content_page={{ page_obj.previous_page_number }}">이전</a>
+                </li>
+            {% endif %}
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if notice_flag and post.is_notice %}
+                {% if num == page_obj.number %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num > page_obj.number|add:"-5" and num < page_obj.number|add:"5" %}
+                    <li class="page-item">
+                        <a class="page-link" href="?notice_page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% elif not notice_flag and not post.is_notice %}
+                {% if num == page_obj.number %}
+                    <li class="page-item active">
+                        <span class="page-link">{{ num }}</span>
+                    </li>
+                {% elif num > page_obj.number|add:"-5" and num < page_obj.number|add:"5" %}
+                    <li class="page-item">
+                        <a class="page-link" href="?content_page={{ num }}">{{ num }}</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            {% if notice_flag %}
+                <li class="page-item">
+                    <a class="page-link" href="?notice_page={{ page_obj.next_page_number }}">다음</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?notice_page={{ page_obj.paginator.num_pages }}">끝 &raquo;</a>
+                </li>
+            {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?content_page={{ page_obj.next_page_number }}">다음</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="?content_page={{ page_obj.paginator.num_pages }}">끝 &raquo;</a>
+                </li>
+            {% endif %}
+        {% endif %}
+    </ul>
+</div>
