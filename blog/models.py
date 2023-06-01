@@ -1,16 +1,18 @@
-from django.conf import settings
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
 
+User = get_user_model()
+
 class Post(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     text = RichTextUploadingField(blank=True, null=True)
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
-    views = models.IntegerField(default=0)  # 조회수 필드 추가
-    is_notice = models.BooleanField(default=False)  # 공지사항 여부를 나타내는 필드 추가
+    views = models.IntegerField(default=0)
+    is_notice = models.BooleanField(default=False)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -20,7 +22,7 @@ class Post(models.Model):
         return self.title
 
     def increase_views(self):
-        self.views += 1 
+        self.views += 1
         self.save()
         
 class Comment(models.Model):

@@ -7,6 +7,7 @@ from django.utils import timezone
 from .models import Post,Comment
 from .forms import PostForm,CommentForm
 
+
 @never_cache
 def post_list(request):
     notice_list = Post.objects.filter(is_notice=True, published_date__lte=timezone.now()).order_by('-published_date')
@@ -109,4 +110,3 @@ def comment_remove(request,pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail',pk=comment.post.pk)
-

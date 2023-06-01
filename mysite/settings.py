@@ -1,5 +1,4 @@
 from pathlib import Path
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -30,7 +29,12 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'blog', 
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -120,3 +124,26 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_IMAGE_BACKEND = 'pillow'
+
+AUTH_USER_MODEL = 'auth.User'
+
+SITE_ID = 1
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # 실제 이메일 발송에 사용되는 SMTP 백엔드
+EMAIL_HOST = 'smtp.gmail.com'  # SMTP 서버 호스트
+EMAIL_PORT = 587  # SMTP 서버 포트
+EMAIL_USE_TLS = True  # TLS 암호화 사용 여부
+EMAIL_HOST_USER = 'kooda2112@gmail.com'  # 이메일 발송에 사용할 계정
+EMAIL_HOST_PASSWORD = 'ctikdoafaanequqn'  # 이메일 발송에 사용할 계정의 비밀번호
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+ACCOUNT_CONFIRM_EMAIL_ON_GET = True
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "두리의 커뮤 사이트"
