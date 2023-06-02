@@ -22,7 +22,7 @@ def post_list(request):
     content_page_number = request.GET.get('content_page')
     content_page_obj = content_paginator.get_page(content_page_number)
     
-    return render(request, 'blog/post_list.html', {
+    return render(request, 'blog/post/post_list.html', {
         'notice_page_obj': notice_page_obj,
         'content_page_obj': content_page_obj
     })
@@ -40,7 +40,7 @@ def post_detail(request, pk):
         post.increase_views()
         request.session[session_key] = True  # 세션에 방문 기록 저장
     
-    return render(request, 'blog/post_detail.html', {'post': post, 'comments': comments})
+    return render(request, 'blog/post/post_detail.html', {'post': post, 'comments': comments})
 
 #게시글 생성 로직
 @login_required
@@ -56,7 +56,7 @@ def post_create(request):
     else:
         form = PostForm()
         
-    return render(request, 'blog/post_create.html',{'form':form})
+    return render(request, 'blog/post/post_create.html',{'form':form})
 
 # 게시글 수정 로직
 @login_required
@@ -72,7 +72,7 @@ def post_update(request,pk):
             return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm(instance = post)
-    return render(request, 'blog/post_update.html',{'form':form})
+    return render(request, 'blog/post/post_update.html',{'form':form})
 
 @login_required
 def post_delete(request,pk):
@@ -95,7 +95,7 @@ def add_comment_to_post(request, pk):
         form = CommentForm()
 
     csrf_token = csrf.get_token(request)  # CSRF 토큰 얻기
-    return render(request, 'blog/add_comment_to_post.html', {'form': form, 'csrf_token': csrf_token})
+    return render(request, 'blog/functions/add_comment_to_post.html', {'form': form, 'csrf_token': csrf_token})
 
 # 댓글 관리 로직(댓글 승인)
 @login_required

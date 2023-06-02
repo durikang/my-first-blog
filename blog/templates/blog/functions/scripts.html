@@ -1,0 +1,30 @@
+{% block scripts%}
+    <script type="text/javascript">
+        function getFetchVersion(file) {
+            return new Promise((resolve, reject) => {
+                fetch(file)
+                    .then(r => {
+                        let lastModGmt = new Date(r.headers.get('Last-Modified'));
+                        let lastModUtc = new Date(lastModGmt.getTime() + (lastModGmt.getTimezoneOffset() * 60000) + (9 * 60 * 60000));
+                        resolve(fetchCallback(file + '?' + lastModUtc.toLocaleString()));
+                    })
+                    .catch(er => {
+                        reject(er.message);
+                    });
+            });
+        }
+
+        function fetchCallback(path) {
+            let link = document.createElement("link");
+            link.type = "text/css";
+            link.rel = "stylesheet";
+            link.href = path;
+            document.getElementsByTagName("head")[0].appendChild(link);
+        }
+
+        getFetchVersion('/static/css/blog.css')
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+{% endblock%}

@@ -5,28 +5,42 @@
 <div class="container">
     <div class="card border-0">
         <div class="card-header border-0 title">
+            {% comment %} 타이틀 {% endcomment %}
+
             <h5>{{ post.title }}</h5>
+
+            {% comment %} 타이틀 END {% endcomment %}
         </div>
+
+        {% comment %} Nav {% endcomment %}
         <div class="card-header bg-white">
             <div class="writer float-start mt-2">
                 게시자 :{{ post.author.last_name }}{{ post.author.first_name }}
             </div>
-        <div class="date top-menu">
-            {% if user.is_authenticated %}
-            <a class="btn btn-default" href="{% url 'post_update' pk=post.pk %}">
-                <i class="bi bi-pencil-square"></i>
-            </a>
-            <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}">
-                <i class="bi bi-trash-fill"></i>
-            </a>
-            {% endif %}
-            {{ post.published_date }} | 조회 수: {{ post.views }}
+            <div class="date top-menu">
+                {% if user.is_authenticated %}
+                <a class="btn btn-default" href="{% url 'post_update' pk=post.pk %}">
+                    <i class="bi bi-pencil-square"></i>
+                </a>
+                <a class="btn btn-default" href="{% url 'post_delete' pk=post.pk %}">
+                    <i class="bi bi-trash-fill"></i>
+                </a>
+                {% endif %}
+                {{ post.published_date }} | 조회 수: {{ post.views }}
+            </div>
         </div>
-            
-        </div>
+        {% comment %} Nav-End {% endcomment %}
+
+        {% comment %} 게시글 내용 {% endcomment %}
         <div class="card-body my-5 primary">
-            <div class="card-text bd-contents">{{ post.text|linebreaksbr }}</div>
+            <div class="card-text bd-contents">
+                {% autoescape off %}
+                {{ post.text|linebreaksbr }}
+                {% endautoescape %}
+            </div>
         </div>
+        {% comment %} 게시글 내용-END {% endcomment %}
+
         <div class="card-footer commentstyle">
             <i class="bi bi-chat-dots-fill"></i> 댓글
         </div>
@@ -42,7 +56,7 @@
                             <h5 class="mt-0">{{ comment.author }}</h5>
                             <p>{{ comment.text|striptags }}</p>
                             <div class="text675rem"> {{ comment.created_date }}</div>
-                            {% if user.is_authenticated and user.is_superuser  %}
+                            {% if user.is_authenticated and user.is_superuser %}
                             <form action="{% url 'comment_remove' comment.id %}" method="post" style="display: inline;">
                                 {% csrf_token %}
                                 <button type="submit" class="btn btn-danger btn-sm">Delete</button>

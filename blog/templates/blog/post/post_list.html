@@ -23,7 +23,7 @@
                 </li>
             {% endfor %}
         </ol>
-        {% include 'blog/pagination.html' with page_obj=notice_page_obj is_notice=notice_flag %}
+        {% include 'blog/functions/pagination.html' with page_obj=notice_page_obj is_notice=notice_flag %}
     {% endwith %}
 {% endblock %}
 
@@ -50,6 +50,6 @@
                 </li>
             {% endfor %}
         </ol>
-        {% include 'blog/pagination.html' with page_obj=content_page_obj is_notice=notice_flag %}
+        {% include 'blog/functions/pagination.html' with page_obj=content_page_obj is_notice=notice_flag %}
     {% endwith %}
 {% endblock %}
