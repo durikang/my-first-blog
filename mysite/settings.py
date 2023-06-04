@@ -147,3 +147,7 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "두리의 커뮤 사이트"
+
+ACCOUNT_FORMS = {
+    'signup': 'mysite.forms.CustomSignupForm',
+}

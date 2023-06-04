@@ -1,10 +1,24 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404,redirect
 from rest_framework.views import APIView
-from rest_framework.response import Response
+from django.views import View
+from django.http import JsonResponse
 from rest_framework.permissions import AllowAny
 from allauth.account.models import EmailConfirmation, EmailConfirmationHMAC
 from allauth.account.views import SignupView
+
+# class LoginView(View):
+#     def get(self, request):
+#         return render(request, 'account/login.html')
+    
+#     def post(self, request):
+#         # 로그인 처리 로직
+#         # ...
+        
+#         data = {
+#             # 업데이트할 데이터
+#         }
+#         return JsonResponse(data)
 
 class CustomSignupView(SignupView):
     def form_valid(self, form):
@@ -27,4 +41,4 @@ class ConfirmEmailView(APIView):
     def get_object(self):
         key = self.kwargs['key']
         email_confirmation = get_object_or_404(EmailConfirmation, key__iexact=key)
-        return email_confirmation
+        return email_confirmation 

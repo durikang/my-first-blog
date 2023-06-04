@@ -6,7 +6,7 @@ from django.middleware import csrf
 from django.utils import timezone
 from .models import Post,Comment
 from .forms import PostForm,CommentForm
-
+from django.contrib.auth.forms import AuthenticationForm
 
 @never_cache
 def post_list(request):
@@ -22,9 +22,12 @@ def post_list(request):
     content_page_number = request.GET.get('content_page')
     content_page_obj = content_paginator.get_page(content_page_number)
     
+    form = AuthenticationForm()
+
     return render(request, 'blog/post/post_list.html', {
         'notice_page_obj': notice_page_obj,
-        'content_page_obj': content_page_obj
+        'content_page_obj': content_page_obj,
+        'form' : form
     })
 
 #게시글 상세보기 로직
